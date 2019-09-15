@@ -4,30 +4,19 @@ import { Alert, FlatList, Text, View, StyleSheet } from "react-native";
 import { testGetTracksByConferenceId } from "../API/api";
 import EventCard from "../SharedKernel/EventCard";
 import { getTimeFieldValues } from "uuid-js";
+import CommonStyles from "../SharedKernel/CommonStyles";
 
 const fileName = `./TracksDB.json`;
-const styles = StyleSheet.create({
-  list: {
-    flex: 1,
-    paddingTop: 20,
-    backgroundColor: "#F3F3F3"
-  }
-});
 
 function Tracks({ navigation }) {
   const [tracks, setTracks] = useState([]);
 
-  async function getTrackData() {
+  useEffect(() => {
     let trackDB = require(fileName);
     setTracks(trackDB);
-
     // testGetTracksByConferenceId().then(result => {
     //   setTracks(result);
     // });
-  }
-
-  useEffect(() => {
-    getTrackData();
   }, []);
 
   handleSelectedTrack = trackId => {
@@ -40,12 +29,10 @@ function Tracks({ navigation }) {
     <FlatList
       key="flatlist"
       data={tracks}
-      style={styles.list}
+      style={CommonStyles.list}
       renderItem={({ item }) => (
-        <EventCard>
-          <Text onPress={() => handleSelectedTrack(item.TrackId)}>
-            {item.Name}
-          </Text>
+        <EventCard onPress={() => handleSelectedTrack(item.TrackId)}>
+          <Text style={CommonStyles.text}>{item.Name}</Text>
         </EventCard>
       )}
       keyExtractor={item => `task_${item.TrackId}`}

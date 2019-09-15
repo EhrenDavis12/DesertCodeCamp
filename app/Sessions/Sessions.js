@@ -11,24 +11,19 @@ import PropTypes from "prop-types";
 import { testGetSessionsByConferenceId } from "../API/api";
 
 import EventCard from "../SharedKernel/EventCard";
+import CommonStyles from "../SharedKernel/CommonStyles";
+import OutSideDate from "../SharedKernel/OutSideDate";
 
 const _ = require("underscore");
 
 const styles = StyleSheet.create({
-  list: {
-    flex: 1,
-    paddingTop: 20,
-    backgroundColor: "#F3F3F3"
-  },
-  startDate: {
-    backgroundColor: "blue"
-  },
-  endDate: {
-    // textAlign: "right",
-    alignSelf: "flex-end",
-    backgroundColor: "red",
-    position: "absolute"
-  },
+  // startDate: {
+  //   backgroundColor: "blue"
+  // },
+  // endDate: {
+  //   marginLeft: "auto",
+  //   backgroundColor: "red"
+  // },
   name: {
     backgroundColor: "green"
   }
@@ -72,17 +67,20 @@ function Sessions({ navigation }) {
     <FlatList
       key="flatlist"
       data={sessions}
-      style={styles.list}
+      style={CommonStyles.list}
       renderItem={({ item }) => (
-        <EventCard>
-          <Text
-            onPress={() => Alert.alert(`Simple Button pressed: ${item.Name}`)}
-          >
+        <View>
+          {/* <View style={{ flexDirection: "row" }}>
             <Text style={styles.startDate}>{item.Time.StartDate}</Text>
             <Text style={styles.endDate}>{item.Time.EndDate}</Text>
-            {/* <Text style={styles.name}>{item.Name}</Text> */}
-          </Text>
-        </EventCard>
+          </View> */}
+          <OutSideDate start={item.Time.StartDate} end={item.Time.EndDate} />
+          <EventCard
+            onPress={() => Alert.alert(`Simple Button pressed: ${item.Name}`)}
+          >
+            <Text style={CommonStyles.text}>{item.Name}</Text>
+          </EventCard>
+        </View>
       )}
       keyExtractor={item => `Sessions_${item.SessionId}`}
     />
