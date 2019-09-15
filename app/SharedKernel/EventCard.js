@@ -1,37 +1,43 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
-// import PropTypes from "prop-types";
+import { View, StyleSheet, TouchableHighlight } from "react-native";
+import PropTypes from "prop-types";
+import CommonStyles, { ProjectColors } from "./CommonStyles";
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#fff",
+    backgroundColor: ProjectColors.whiteColor,
     flex: 1,
     padding: 10,
     paddingTop: 10,
-    paddingBottom: 20,
+    paddingBottom: 10,
     margin: 10,
     marginTop: 5,
     marginBottom: 5
   },
-  title: {
-    fontSize: 15,
-    fontWeight: "300",
-    marginLeft: 7,
-    textAlign: "left"
+  shadowBox: {
+    borderWidth: 0,
+    borderRadius: 2,
+    borderColor: ProjectColors.borderColor,
+    borderBottomWidth: 4,
+    borderRightWidth: 2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 1
   }
 });
 
 export default function EventCard(props) {
   return (
-    <View style={styles.card}>
-      <View style={styles.title}>{props.children}</View>
-    </View>
+    <TouchableHighlight
+      underlayColor={ProjectColors.selectColor}
+      onPress={props.onPress}
+    >
+      <View style={[styles.card, styles.shadowBox]}>{props.children}</View>
+    </TouchableHighlight>
   );
 }
 
-// EventCard.propTypes = {
-//   item: PropTypes.shape({
-//     Name: PropTypes.string.isRequired
-//   })
-//   event: PropTypes.func
-// };
+EventCard.propTypes = {
+  onPress: PropTypes.func.isRequired
+};
