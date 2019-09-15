@@ -1,0 +1,146 @@
+[
+  {
+    "TrackId": 107,
+    "Name": ".NET",
+    "Description": "<p>The .NET Framework is a popular development platform for building apps for Windows, Windows Store, Windows Phone, Windows Server, and Windows Azure. The .NET Framework platform includes the&nbsp;<a href=\"http://msdn.microsoft.com/vstudio/hh341490.aspx\">C#</a>&nbsp;and&nbsp;<a href=\"http://msdn.microsoft.com/vstudio/hh388573.aspx\">Visual Basic</a>&nbsp;programming languages, the&nbsp;<a href=\"http://msdn.microsoft.com/library/vstudio/8bs2ecf4.aspx\">common language runtime</a>, and an extensive&nbsp;<a href=\"http://msdn.microsoft.com/library/vstudio/gg145045(v=vs.110).aspx\">class library</a>.</p>",
+    "Color": "68217a"
+  },
+  {
+    "TrackId": 63,
+    "Name": "Agile",
+    "Description": "Talks on Agile practices such as SCRUM, Lean and eXtreme programming, software craftsmanship",
+    "Color": "c3c3c3"
+  },
+  {
+    "TrackId": 125,
+    "Name": "Artifical Intelligence (AI)",
+    "Description": "Artifical Intelligence",
+    "Color": "c3c3c3"
+  },
+  {
+    "TrackId": 1,
+    "Name": "ASP.NET",
+    "Description": "ASP.NET",
+    "Color": "c3c3c3"
+  },
+  {
+    "TrackId": 34,
+    "Name": "Cloud",
+    "Description": "Azure, Amazon, Oracle, etc.",
+    "Color": "00abec"
+  },
+  {
+    "TrackId": 112,
+    "Name": "Database (SQL/NoSQL)",
+    "Description": "Database (SQL/NoSQL)",
+    "Color": "c3c3c3"
+  },
+  {
+    "TrackId": 122,
+    "Name": "Design (UX/UI)",
+    "Description": "Design (UX/UI)",
+    "Color": "c3c3c3"
+  },
+  {
+    "TrackId": 120,
+    "Name": "DevOps/System Administration",
+    "Description": "DevOps/System Administration",
+    "Color": "c3c3c3"
+  },
+  {
+    "TrackId": 22,
+    "Name": "Functional Programming",
+    "Description": "Programming with Haskell, Clojure, F#, and other functional programming languages",
+    "Color": "c3c3c3"
+  },
+  {
+    "TrackId": 124,
+    "Name": "Home Automation",
+    "Description": "Alexa Skills, Google Home, Cortana, etc",
+    "Color": "c3c3c3"
+  },
+  {
+    "TrackId": 110,
+    "Name": "HTML/CSS",
+    "Description": "HTML/CSS",
+    "Color": "c3c3c3"
+  },
+  {
+    "TrackId": 127,
+    "Name": "Identity Management",
+    "Description": "Identity Management",
+    "Color": "c3c3c3"
+  },
+  {
+    "TrackId": 123,
+    "Name": "IoT",
+    "Description": "Internet of things, Ardruino, Raspberry PI, etc",
+    "Color": "c3c3c3"
+  },
+  {
+    "TrackId": 4,
+    "Name": "Java",
+    "Description": "<p>Java allows you to play online games, chat with people around the world, calculate your mortgage interest, and view images in 3D, just to name a few. It's also integral to the intranet applications and other e-business solutions that are the foundation of corporate computing.</p>",
+    "Color": "FF0000"
+  },
+  {
+    "TrackId": 109,
+    "Name": "Javascript/Node.js",
+    "Description": "<p style=\"padding-left: 30px;\">JavaScript&nbsp;(JS) is an&nbsp;<a title=\"Interpreter (computing)\" href=\"http://en.wikipedia.org/wiki/Interpreter_(computing)\">interpreted</a>&nbsp;computer&nbsp;<a title=\"Programming language\" href=\"http://en.wikipedia.org/wiki/Programming_language\">programming language</a>.<sup id=\"cite_ref-FOOTNOTEFlanaganFerguson20061_5-0\" class=\"reference\"><a href=\"http://en.wikipedia.org/wiki/JavaScript#cite_note-FOOTNOTEFlanaganFerguson20061-5\">[5]</a></sup>&nbsp;It was originally implemented as part of&nbsp;<a title=\"Web browser\" href=\"http://en.wikipedia.org/wiki/Web_browser\">web browsers</a>&nbsp;so that&nbsp;<a title=\"Client-side scripting\" href=\"http://en.wikipedia.org/wiki/Client-side_scripting\">client-side scripts</a>&nbsp;could<a title=\"User interface\" href=\"http://en.wikipedia.org/wiki/User_interface\">interact with the user</a>, control the browser, communicate&nbsp;<a title=\"Ajax (programming)\" href=\"http://en.wikipedia.org/wiki/Ajax_(programming)\">asynchronously</a>, and alter the&nbsp;<a title=\"Document Object Model\" href=\"http://en.wikipedia.org/wiki/Document_Object_Model\">document content</a>&nbsp;that was displayed.<sup id=\"cite_ref-FOOTNOTEFlanaganFerguson20061_5-1\" class=\"reference\"><a href=\"http://en.wikipedia.org/wiki/JavaScript#cite_note-FOOTNOTEFlanaganFerguson20061-5\">[5]</a></sup>&nbsp;More recently, however, it has become common in server-side programming, game development and the creation of desktop applications.</p>",
+    "Color": "F7df1e"
+  },
+  {
+    "TrackId": 55,
+    "Name": "JQuery",
+    "Description": "<p><a href=\"http://www.jquery.com\" target=\"_blank\">jQuery</a> is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write JavaScript.</p>",
+    "Color": "0769AD"
+  },
+  {
+    "TrackId": 111,
+    "Name": "Mobile (Android/iOS/Microsoft)",
+    "Description": "Mobile (Android/iOS/Microsoft)",
+    "Color": "c3c3c3"
+  },
+  {
+    "TrackId": 121,
+    "Name": "Other",
+    "Description": "Other",
+    "Color": "c3c3c3"
+  },
+  {
+    "TrackId": 3,
+    "Name": "PHP",
+    "Description": "PHP",
+    "Color": "c3c3c3"
+  },
+  {
+    "TrackId": 9,
+    "Name": "Python",
+    "Description": "<p>Python is a programming language that lets you work more quickly and integrate your systems more effectively. You can learn to use Python and see almost immediate gains in productivity and lower maintenance costs.</p>",
+    "Color": "376A94"
+  },
+  {
+    "TrackId": 119,
+    "Name": "QA/Testing",
+    "Description": "QA/Testing",
+    "Color": "c3c3c3"
+  },
+  {
+    "TrackId": 6,
+    "Name": "REST",
+    "Description": "REST",
+    "Color": "c3c3c3"
+  },
+  {
+    "TrackId": 13,
+    "Name": "Ruby",
+    "Description": "<p>A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.</p>",
+    "Color": "7d0000"
+  },
+  {
+    "TrackId": 126,
+    "Name": "Soft Skills",
+    "Description": "Soft skills are the personal attributes you need to succeed in the workplace. These are often related to how you work with others – in other words, these are people skills. Soft skills are different from hard skills, which are directly relevant to the job you are applying for. These are often more quantifiable, and easier to learn. A hard skill for a carpenter, for example, might be the ability to operate a power saw or use framing squares.",
+    "Color": "c3c3c3"
+  }
+]
