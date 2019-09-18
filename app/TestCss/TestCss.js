@@ -10,7 +10,7 @@ import {
 import EventCard from "../SharedKernel/EventCard";
 import CommonStyles from "../SharedKernel/CommonStyles";
 
-const fileName = `./test.json`;
+const fileName = `../DB_files/test.json`;
 
 function TestCss({ navigation }) {
   const [testData, setTestData] = useState([]);

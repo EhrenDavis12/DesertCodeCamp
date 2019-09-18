@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   text: {
-    color: ProjectColors.darkText
+    color: ProjectColors.darkText,
+    fontWeight: "bold"
   }
 });
 

@@ -21,14 +21,17 @@ export default StackNavigator({
   },
   sessions: {
     screen: Sessions,
-    navigationOptions: () => ({
-      title: "Sessions"
-    })
+    navigationOptions: value => {
+      const track = value.navigation.getParam("track", "");
+      return {
+        title: `Session: ${track.Name}`
+      };
+    }
   },
   sessionDetails: {
     screen: SessionDetails,
     navigationOptions: () => ({
-      title: "SessionDetails"
+      title: "Session Details"
     })
   }
 });
