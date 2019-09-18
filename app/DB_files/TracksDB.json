@@ -66,12 +66,6 @@
     "Color": "c3c3c3"
   },
   {
-    "TrackId": 127,
-    "Name": "Identity Management",
-    "Description": "Identity Management",
-    "Color": "c3c3c3"
-  },
-  {
     "TrackId": 123,
     "Name": "IoT",
     "Description": "Internet of things, Ardruino, Raspberry PI, etc",

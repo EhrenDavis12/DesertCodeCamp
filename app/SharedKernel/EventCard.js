@@ -6,7 +6,7 @@ import CommonStyles, { ProjectColors } from "./CommonStyles";
 const styles = StyleSheet.create({
   card: {
     backgroundColor: ProjectColors.whiteColor,
-    flex: 1,
+    // flex: 1,
     padding: 10,
     paddingTop: 10,
     paddingBottom: 10,

@@ -14,63 +14,78 @@ import EventCard from "../SharedKernel/EventCard";
 import CommonStyles from "../SharedKernel/CommonStyles";
 import OutSideCardDate from "../SharedKernel/OutSideCardDate";
 import SessionDetails from "../SessionDetails/SessionDetails";
+import CleanSessionData from "./CleanSessionData";
+import FullScrollView from "../SharedKernel/FullScrollView";
 
 const _ = require("underscore");
 
 function Sessions({ navigation }) {
   const [sessions, setSessions] = useState([]);
-  const trackId = navigation.getParam("trackId", "");
+  const trackId = navigation.getParam("track", "").TrackId;
+
+  getDataByFile = () => {
+    setSessions(
+      CleanSessionData(trackId, require(`../DB_files/SessionsDB.json`))
+    );
+  };
+
+  gitDataByAPI = () => {
+    testGetSessionsByConferenceId().then(result =>
+      setSessions(CleanSessionData(trackId, result))
+    );
+  };
 
   useEffect(() => {
-    let defaultTime = {
-      StartDate: "2019-01-01T12:00:00",
-      EndDate: "2019-01-01T13:00:00"
-    };
-    let result = require(`./SessionsDB.json`).map(e => ({
-      ...e,
-      Time: defaultTime
-    }));
-    let sessionsByTrackId = _.filter(result, obj => {
-      return _.some([obj.Track], { TrackId: trackId });
-    });
-
-    // testGetSessionsByConferenceId().then(result => {
-    //   let sessionsByTrackId = _.filter(result, obj => {
-    //     return _.some([obj.Track], { TrackId: trackId });
-    //   });
-    //   // let SessionsSort = _.sortBy(sessionsByTrackId, session => {
-    //   //   return session.Time.StartDate;
-    //   // });
-    //   setSessions(sessionsByTrackId);
-    // });
-
-    setSessions(sessionsByTrackId);
+    getDataByFile();
+    // gitDataByAPI();
   }, []);
 
   handleSelectedSession = session => {
-    Alert.alert(`Simple Button pressed: ${session.Name}`);
+    // Alert.alert(`Simple Button pressed: ${session.Name}`);
     navigation.navigate("sessionDetails", { session });
   };
 
-  return [
-    <FlatList
-      key="flatlist"
-      data={sessions}
-      style={CommonStyles.list}
-      renderItem={({ item }) => (
-        <View>
+  generateGroupedSessionList = list => {
+    let lastTimeStart = "";
+    let lastTimeEnd = "";
+    return list.map(item => {
+      let resultsJSX;
+      if (
+        item.Time.StartDate !== lastTimeStart ||
+        item.Time.EndDate !== lastTimeEnd
+      ) {
+        resultsJSX = (
           <OutSideCardDate
             start={item.Time.StartDate}
             end={item.Time.EndDate}
           />
+        );
+        lastTimeStart = item.Time.StartDate;
+        lastTimeEnd = item.Time.EndDate;
+      }
+      resultsJSX = (
+        <View key={`Sessions_${item.SessionId}`}>
+          {resultsJSX}
           <EventCard onPress={() => handleSelectedSession(item)}>
             <Text style={CommonStyles.text}>{item.Name}</Text>
           </EventCard>
         </View>
-      )}
-      keyExtractor={item => `Sessions_${item.SessionId}`}
-    />
-  ];
+      );
+      return { resultsJSX, itemKey: `Sessions_${item.SessionId}` };
+    });
+  };
+
+  return (
+    <FullScrollView>
+      <FlatList
+        key="flatlist"
+        data={generateGroupedSessionList(sessions)}
+        style={CommonStyles.list}
+        renderItem={({ item }) => <View>{item.resultsJSX}</View>}
+        keyExtractor={item => `Render_${item.itemKey}`}
+      />
+    </FullScrollView>
+  );
 }
 
 export default Sessions;

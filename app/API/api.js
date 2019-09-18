@@ -3,14 +3,13 @@ import moment from "moment";
 import Constants from "expo-constants";
 
 const api = `https://api.myconferenceevents.com`;
-const conferenceId = "14";
+const conferenceId = "13";
 
 export function loadData(url, data) {
   url = `${url}?`;
   for (let attributeName in data) {
     url = `${url}${attributeName}=${data[attributeName]}&`;
   }
-  debugger;
   return fetch(url).then(response => response.json());
 }
 
