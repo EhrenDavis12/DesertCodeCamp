@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
 
 export const ProjectColors = {
-  bkgColor: "#D2B48C", //"#DCDCDC",
+  bkgColor: "#F5DEB3", //  Wheat
+  MenuBgColor: "#D2B48C", // Tan
   selectColor: "#606060",
-  whiteColor: "#FFEFD5", //"#fff",
-  borderColor: "#8B4513", //"gray",
+  whiteColor: "#FFEFD5", // PapayaWhip
+  borderColor: "#8B4513", // SaddleBrown
   darkText: "black"
 };
 
@@ -20,6 +21,19 @@ export default CommonStyles = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
-    backgroundColor: ProjectColors.bkgColor
+    backgroundColor: ProjectColors.bkgColor,
+    flexDirection: "column"
+  },
+  shadowBox: {
+    borderWidth: 0,
+    borderRadius: 2,
+    borderColor: ProjectColors.borderColor,
+    borderBottomWidth: 4,
+    borderRightWidth: 2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 1,
+    borderRadius: 10
   }
 });

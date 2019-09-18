@@ -13,17 +13,6 @@ const styles = StyleSheet.create({
     margin: 10,
     marginTop: 5,
     marginBottom: 5
-  },
-  shadowBox: {
-    borderWidth: 0,
-    borderRadius: 2,
-    borderColor: ProjectColors.borderColor,
-    borderBottomWidth: 4,
-    borderRightWidth: 2,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    elevation: 1
   }
 });
 
@@ -33,7 +22,9 @@ export default function EventCard(props) {
       underlayColor={ProjectColors.selectColor}
       onPress={props.onPress}
     >
-      <View style={[styles.card, styles.shadowBox]}>{props.children}</View>
+      <View style={[styles.card, CommonStyles.shadowBox]}>
+        {props.children}
+      </View>
     </TouchableHighlight>
   );
 }

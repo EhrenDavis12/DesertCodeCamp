@@ -25,7 +25,7 @@ function Tracks({ navigation }) {
   // event={() => Alert.alert(`Simple Button pressed: ${item.Name}`)}
 
   return (
-    <FullScrollView>
+    <FullScrollView navigation={navigation}>
       <FlatList
         key="flatlist"
         data={tracks}

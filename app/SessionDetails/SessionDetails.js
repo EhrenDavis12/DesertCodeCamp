@@ -19,7 +19,7 @@ function SessionDetails({ navigation }) {
 
   // return <Text style={CommonStyles.text}>{Name}</Text>;
   return (
-    <FullScrollView>
+    <FullScrollView navigation={navigation}>
       <OutSideCardHeader>Session:</OutSideCardHeader>
       <EventCard onPress={() => {}}>
         <Text style={CommonStyles.text}>{Name}</Text>

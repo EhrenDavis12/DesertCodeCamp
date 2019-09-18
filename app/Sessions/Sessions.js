@@ -76,7 +76,7 @@ function Sessions({ navigation }) {
   };
 
   return (
-    <FullScrollView>
+    <FullScrollView navigation={navigation}>
       <FlatList
         key="flatlist"
         data={generateGroupedSessionList(sessions)}
