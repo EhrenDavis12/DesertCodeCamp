@@ -13,16 +13,18 @@ const styles = StyleSheet.create({
     margin: 10,
     marginTop: 5,
     marginBottom: 5
-  }
+  },
+  propStyle: {}
 });
 
 export default function EventCard(props) {
+  props.style ? (styles.propStyle = props.style) : (styles.propStyle = {});
   return (
     <TouchableHighlight
       underlayColor={ProjectColors.selectColor}
       onPress={props.onPress}
     >
-      <View style={[styles.card, CommonStyles.shadowBox]}>
+      <View style={[styles.card, CommonStyles.shadowBox, styles.propStyle]}>
         {props.children}
       </View>
     </TouchableHighlight>

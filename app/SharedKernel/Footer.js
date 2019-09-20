@@ -20,11 +20,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flex: 1,
-    height: 50,
+    height: 60,
     margin: 5
   },
   footerText: {
-    // color: "white",
     fontWeight: "bold",
     alignItems: "center",
     fontSize: 18
@@ -32,8 +31,8 @@ const styles = StyleSheet.create({
 });
 
 export default function Footer({ navigation }) {
-  handleSelectedTracks = () => {
-    navigation.navigate("tracks");
+  handleSelectedMainMenu = () => {
+    navigation.navigate("mainMenu");
   };
 
   return (
@@ -41,9 +40,9 @@ export default function Footer({ navigation }) {
       <TouchableHighlight
         style={[styles.bottomButtons, CommonStyles.shadowBox]}
         underlayColor={ProjectColors.selectColor}
-        onPress={() => handleSelectedTracks()}
+        onPress={() => handleSelectedMainMenu()}
       >
-        <Text style={styles.footerText}>Tracks</Text>
+        <Text style={styles.footerText}>Main Menu</Text>
       </TouchableHighlight>
       <TouchableHighlight
         style={[styles.bottomButtons, CommonStyles.shadowBox]}

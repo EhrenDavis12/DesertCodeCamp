@@ -7,20 +7,25 @@ import { getTimeFieldValues } from "uuid-js";
 import CommonStyles from "../SharedKernel/CommonStyles";
 import FullScrollView from "../SharedKernel/FullScrollView";
 
+const _ = require("underscore");
 const fileName = `../DB_files/TracksDB.json`;
 
 function Tracks({ navigation }) {
-  const [tracks, setTracks] = useState([]);
+  // const [tracks, setTracks] = useState([]);
+  let tracks = require(fileName);
+  tracks = _.sortBy(tracks, track => {
+    return track.Name;
+  });
 
-  useEffect(() => {
-    setTracks(require(fileName));
-    // testGetTracksByConferenceId().then(result => {
-    //   setTracks(result);
-    // });
-  }, []);
+  // useEffect(() => {
+  //   setTracks(require(fileName));
+  //   // testGetTracksByConferenceId().then(result => {
+  //   //   setTracks(result);
+  //   // });
+  // }, []);
 
   handleSelectedTrack = track => {
-    navigation.navigate("sessions", { track });
+    navigation.navigate("sessionsTrack", { track });
   };
   // event={() => Alert.alert(`Simple Button pressed: ${item.Name}`)}
 
