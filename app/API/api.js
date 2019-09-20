@@ -10,6 +10,7 @@ export function loadData(url, data) {
   for (let attributeName in data) {
     url = `${url}${attributeName}=${data[attributeName]}&`;
   }
+  debugger;
   return fetch(url).then(response => response.json());
 }
 
