@@ -8,6 +8,7 @@ import SessionsTime from "./app/Sessions/SessionsTime";
 import SessionDetails from "./app/SessionDetails/SessionDetails";
 import MainMenu from "./app/MainMenu/MainMenu";
 import Times from "./app/Times/Times";
+import LoginForm from "./app/Login/LoginForm";
 
 export default StackNavigator({
   // testCss: {
@@ -32,7 +33,7 @@ export default StackNavigator({
     screen: SessionsTrack,
     navigationOptions: value => {
       return {
-        title: `Session: ${value.navigation.getParam("track", "").name}`
+        title: `Session: ${value.navigation.getParam("track", "").Name}`
       };
     }
   },
@@ -55,5 +56,21 @@ export default StackNavigator({
     navigationOptions: () => ({
       title: "Times"
     })
+  },
+  loginForm: {
+    screen: LoginForm,
+    navigationOptions: () => ({
+      title: "Login Form"
+    })
+  },
+  mySessions: {
+    screen: SessionsTrack,
+    navigationOptions: value => {
+      const user = value.navigation.getParam("user", "");
+      name = `${user.FirstName} ${user.LastName}`;
+      return {
+        title: name
+      };
+    }
   }
 });

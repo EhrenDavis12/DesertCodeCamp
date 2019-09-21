@@ -10,8 +10,11 @@ export function loadData(url, data) {
   for (let attributeName in data) {
     url = `${url}${attributeName}=${data[attributeName]}&`;
   }
-  debugger;
-  return fetch(url).then(response => response.json());
+  // debugger;
+  return fetch(url).then(response => {
+    // debugger;
+    return response.json();
+  });
 }
 
 export function testGetTracksByConferenceId() {
@@ -229,14 +232,14 @@ export function testGetAmIInterestedInSessionByLogin() {
   return loadData(url, data).then(response => response);
 }
 
-export function testGetMyInterestedInSessionsByUserId() {
+export function testGetMyInterestedInSessionsByUserId(userId) {
   let url = `${api}/Session/GetMyInterestedInSessionsByUserId`;
   let data = {
     userId: "22298",
     subdomain: "apr2014",
     domain: "desertcodecamp.com"
   };
-  return loadData(url).then(response => response);
+  return loadData(url, data).then(response => response);
 }
 
 export function testGetMyInterestedInSessionsByLogin() {
@@ -246,7 +249,7 @@ export function testGetMyInterestedInSessionsByLogin() {
     subdomain: "apr2014",
     domain: "desertcodecamp.com"
   };
-  return loadData(url).then(response => response);
+  return loadData(url, data).then(response => response);
 }
 
 export function testGetMyPresentationsByUserId() {
@@ -256,7 +259,7 @@ export function testGetMyPresentationsByUserId() {
     subdomain: "apr2014",
     domain: "desertcodecamp.com"
   };
-  return loadData(url).then(response => response);
+  return loadData(url, data).then(response => response);
 }
 
 export function testGetMyPresentationsSessionByLogin() {
@@ -266,7 +269,7 @@ export function testGetMyPresentationsSessionByLogin() {
     subdomain: "apr2014",
     domain: "desertcodecamp.com"
   };
-  return loadData(url).then(response => response);
+  return loadData(url, data).then(response => response);
 }
 
 export function testGetAmIPresentingSessionByUserId() {
@@ -354,9 +357,9 @@ export function testGetUsers() {
   return loadData(url).then(response => response);
 }
 
-export function testSearchForEmail() {
+export function testSearchForEmail(email) {
   let url = `${api}/User/SearchForEmail`;
-  let data = { email: "guadagno" };
+  let data = { email };
   return loadData(url, data).then(response => response);
 }
 

@@ -38,7 +38,7 @@ function MainMenu({ navigation }) {
     {
       ID: 3,
       Name: "Login",
-      onPress: () => {}
+      onPress: () => navigation.navigate("loginForm")
     }
   ];
 

@@ -8,14 +8,20 @@ import {
   TouchableHighlight
 } from "react-native";
 import PropTypes from "prop-types";
-import { testGetSessionsByConferenceId } from "../API/api";
+import {
+  testGetSessionsByConferenceId,
+  testGetMyInterestedInSessionsByUserId
+} from "../API/api";
 
 import EventCard from "../SharedKernel/EventCard";
 import CommonStyles from "../SharedKernel/CommonStyles";
 import OutSideCardHeader from "../SharedKernel/OutSideCardHeader";
 import SessionDetails from "../SessionDetails/SessionDetails";
 import FullScrollView from "../SharedKernel/FullScrollView";
-import { GetSessionDataByTrack } from "../SharedKernel/CleanFilterData";
+import {
+  GetSessionDataByTrack,
+  CleanSessionData
+} from "../SharedKernel/CleanFilterData";
 
 const _ = require("underscore");
 
@@ -40,11 +46,24 @@ const generateGroupedSessionList = list => {
 };
 
 function Sessions({ navigation }) {
-  // const [sessions, setSessions] = useState([]);
-  const trackId = navigation.getParam("track", "").TrackId;
-  const sessionsDB = require(`../DB_files/SessionsDB.json`);
-  const sessions = GetSessionDataByTrack(trackId, sessionsDB);
-  const renderSessions = generateGroupedSessionList(sessions);
+  const [renderSessions, setRenderSessions] = useState([]);
+
+  useEffect(() => {
+    const trackId = navigation.getParam("track", "").TrackId;
+    const userId = navigation.getParam("user", "").UserId;
+    let sessions = [];
+    if (trackId) {
+      sessions = require(`../DB_files/SessionsDB.json`);
+      sessions = GetSessionDataByTrack(trackId, sessions);
+      setRenderSessions(generateGroupedSessionList(sessions));
+    }
+    if (userId)
+      testGetMyInterestedInSessionsByUserId(userId).then(results => {
+        // debugger;
+        sessions = CleanSessionData(results);
+        setRenderSessions(generateGroupedSessionList(sessions));
+      });
+  }, []);
 
   // getDataByFile = () => {
   //   setSessions(
