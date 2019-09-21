@@ -35,5 +35,14 @@ export default CommonStyles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 1,
     borderRadius: 10
+  },
+  card: {
+    backgroundColor: ProjectColors.whiteColor,
+    padding: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+    margin: 10,
+    marginTop: 5,
+    marginBottom: 5
   }
 });
