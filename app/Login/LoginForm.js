@@ -7,8 +7,10 @@ import {
   Alert,
   StyleSheet,
   Dimensions,
-  TouchableHighlight
+  TouchableHighlight,
+  AsyncStorage
 } from "react-native";
+import { withStore } from "../SharedKernel/HOC/Store";
 
 import { testSearchForEmail } from "../API/api";
 import EventCard from "../SharedKernel/EventCard";
@@ -43,8 +45,17 @@ const styles = StyleSheet.create({
   }
 });
 
-function LoginForm({ navigation }) {
+function LoginForm({ navigation, store }) {
   const [email, setEmail] = useState("");
+
+  // useEffect(() => {
+  // AsyncStorage.getItem("user").then(result => {
+  //   if (result) setEmail(result.Email);
+  // });
+  AsyncStorage.getItem("DDC_Email").then(result => {
+    if (result) setEmail(result);
+  });
+  // }, []);
 
   //"j.guadagno@gmail.com"
   validEmail = text => {
@@ -56,6 +67,8 @@ function LoginForm({ navigation }) {
     // if (validEmail(email))
     testSearchForEmail("j.guadagno@gmail.com").then(result => {
       if (result.length === 1) {
+        AsyncStorage.setItem("DDC_Email", "j.guadagno@gmail.com");
+        store.set("user", result[0]);
         navigation.navigate("mySessions", { user: result[0] });
       } else {
         Alert.alert(`Please re-enter your email`);
@@ -85,4 +98,4 @@ function LoginForm({ navigation }) {
   );
 }
 
-export default LoginForm;
+export default withStore(LoginForm);
