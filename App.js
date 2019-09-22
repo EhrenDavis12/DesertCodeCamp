@@ -1,5 +1,6 @@
 import React from "react";
 import { StackNavigator } from "react-navigation";
+import { createStore } from "./app/SharedKernel/HOC/Store";
 
 import Tracks from "./app/Tracks/Tracks";
 import TestCss from "./app/TestCss/TestCss";
@@ -9,8 +10,10 @@ import SessionDetails from "./app/SessionDetails/SessionDetails";
 import MainMenu from "./app/MainMenu/MainMenu";
 import Times from "./app/Times/Times";
 import LoginForm from "./app/Login/LoginForm";
+import About from "./app/About/About";
 
-export default StackNavigator({
+// export default StackNavigator({
+const stackNavigator = StackNavigator({
   // testCss: {
   //   screen: TestCss,
   //   navigationOptions: () => ({
@@ -67,10 +70,18 @@ export default StackNavigator({
     screen: SessionsTrack,
     navigationOptions: value => {
       const user = value.navigation.getParam("user", "");
-      name = `${user.FirstName} ${user.LastName}`;
+      name = user ? `${user.FirstName} ${user.LastName}` : "";
       return {
         title: name
       };
     }
+  },
+  about: {
+    screen: About,
+    navigationOptions: () => ({
+      title: "About"
+    })
   }
 });
+
+export default createStore(stackNavigator);

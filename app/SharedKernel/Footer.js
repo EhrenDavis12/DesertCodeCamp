@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
 import CommonStyles, { ProjectColors } from "./CommonStyles";
+import { withStore } from "../SharedKernel/HOC/Store";
 
 const styles = StyleSheet.create({
   footer: {
@@ -30,9 +31,16 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function Footer({ navigation }) {
+function Footer({ navigation, store }) {
   handleSelectedMainMenu = () => {
     navigation.navigate("mainMenu");
+  };
+
+  handleSelectedMySessions = () => {
+    const user = store.get("user");
+    user
+      ? navigation.navigate("mySessions", { user })
+      : navigation.navigate("loginForm");
   };
 
   return (
@@ -44,12 +52,15 @@ export default function Footer({ navigation }) {
       >
         <Text style={styles.footerText}>Main Menu</Text>
       </TouchableHighlight>
+
       <TouchableHighlight
         style={[styles.bottomButtons, CommonStyles.shadowBox]}
         underlayColor={ProjectColors.selectColor}
+        onPress={() => handleSelectedMySessions()}
       >
         <Text style={styles.footerText}>My Sessions</Text>
       </TouchableHighlight>
+
       <TouchableHighlight
         style={[styles.bottomButtons, CommonStyles.shadowBox]}
         underlayColor={ProjectColors.selectColor}
@@ -59,3 +70,5 @@ export default function Footer({ navigation }) {
     </View>
   );
 }
+
+export default withStore(Footer);

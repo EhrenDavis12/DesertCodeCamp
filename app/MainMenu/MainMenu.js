@@ -5,6 +5,7 @@ import EventCard from "../SharedKernel/EventCard";
 import { getTimeFieldValues } from "uuid-js";
 import CommonStyles from "../SharedKernel/CommonStyles";
 import FullScrollView from "../SharedKernel/FullScrollView";
+import { withStore } from "../SharedKernel/HOC/Store";
 
 const styles = StyleSheet.create({
   card: {
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
   }
 });
 
-function MainMenu({ navigation }) {
+function MainMenu({ navigation, store }) {
   const menuItems = [
     {
       ID: 1,
@@ -34,13 +35,32 @@ function MainMenu({ navigation }) {
       ID: 2,
       Name: "Times",
       onPress: () => navigation.navigate("times")
-    },
-    {
+    }
+  ];
+  const user = store.get("user");
+  if (!user) {
+    menuItems.push({
       ID: 3,
       Name: "Login",
       onPress: () => navigation.navigate("loginForm")
-    }
-  ];
+    });
+  } else {
+    menuItems.push({
+      ID: 4,
+      Name: "My Session",
+      onPress: () => navigation.navigate("mySessions", { user })
+    });
+    menuItems.push({
+      ID: 5,
+      Name: "Logout",
+      onPress: () => store.set("user", null) //navigation.navigate("logout")
+    });
+  }
+  menuItems.push({
+    ID: 6,
+    Name: "About DCC",
+    onPress: () => navigation.navigate("about")
+  });
 
   return (
     <FullScrollView navigation={navigation}>
@@ -59,4 +79,4 @@ function MainMenu({ navigation }) {
   );
 }
 
-export default MainMenu;
+export default withStore(MainMenu);

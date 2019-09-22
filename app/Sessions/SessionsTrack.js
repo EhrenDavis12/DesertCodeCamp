@@ -8,11 +8,12 @@ import {
   TouchableHighlight
 } from "react-native";
 import PropTypes from "prop-types";
+import { withStore } from "../SharedKernel/HOC/Store";
+
 import {
   testGetSessionsByConferenceId,
   testGetMyInterestedInSessionsByUserId
 } from "../API/api";
-
 import EventCard from "../SharedKernel/EventCard";
 import CommonStyles from "../SharedKernel/CommonStyles";
 import OutSideCardHeader from "../SharedKernel/OutSideCardHeader";
@@ -45,12 +46,14 @@ const generateGroupedSessionList = list => {
   });
 };
 
-function Sessions({ navigation }) {
+function Sessions({ navigation, store }) {
   const [renderSessions, setRenderSessions] = useState([]);
 
   useEffect(() => {
     const trackId = navigation.getParam("track", "").TrackId;
-    const userId = navigation.getParam("user", "").UserId;
+    // const userId = navigation.getParam("user", "").UserId;
+    const user = store.get("user");
+    const userId = user ? store.get("user").UserId : 0;
     let sessions = [];
     if (trackId) {
       sessions = require(`../DB_files/SessionsDB.json`);
@@ -99,4 +102,4 @@ function Sessions({ navigation }) {
   );
 }
 
-export default Sessions;
+export default withStore(Sessions);
