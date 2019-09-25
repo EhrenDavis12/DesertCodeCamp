@@ -1,30 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Alert, FlatList, Text, View, StyleSheet } from "react-native";
 
-import { testGetTracksByConferenceId } from "../API/api";
 import EventCard from "../SharedKernel/EventCard";
-import { getTimeFieldValues } from "uuid-js";
 import CommonStyles from "../SharedKernel/CommonStyles";
 import FullScrollView from "../SharedKernel/FullScrollView";
+import { withStore } from "../SharedKernel/HOC/Store";
 
 const _ = require("underscore");
-const fileName = `../DB_files/TracksDB.json`;
 
-function Tracks({ navigation }) {
-  // const [tracks, setTracks] = useState([]);
-  let tracks = require(fileName);
-  tracks = _.sortBy(tracks, track => {
+sortTracks = unSortedTracks =>
+  _.sortBy(unSortedTracks, track => {
     return track.Name;
   });
 
-  // useEffect(() => {
-  //   setTracks(require(fileName));
-  //   // testGetTracksByConferenceId().then(result => {
-  //   //   setTracks(result);
-  //   // });
-  // }, []);
+function Tracks({ navigation, store }) {
+  const [tracks, setTracks] = useState(sortTracks(store.get("tracks")));
 
-  handleSelectedTrack = track => {
+  handleSelectedTrack = track => () => {
     navigation.navigate("sessionsTrack", { track });
   };
   // event={() => Alert.alert(`Simple Button pressed: ${item.Name}`)}
@@ -36,7 +28,7 @@ function Tracks({ navigation }) {
         data={tracks}
         style={CommonStyles.list}
         renderItem={({ item }) => (
-          <EventCard onPress={() => handleSelectedTrack(item)}>
+          <EventCard onPress={handleSelectedTrack(item)}>
             <Text style={CommonStyles.text}>{item.Name}</Text>
           </EventCard>
         )}
@@ -46,4 +38,4 @@ function Tracks({ navigation }) {
   );
 }
 
-export default Tracks;
+export default withStore(Tracks);

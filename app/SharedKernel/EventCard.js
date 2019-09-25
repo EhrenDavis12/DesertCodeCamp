@@ -1,28 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet, TouchableHighlight } from "react-native";
 import PropTypes from "prop-types";
 import CommonStyles, { ProjectColors } from "./CommonStyles";
-
-const styles = StyleSheet.create({
-  propStyle: {}
-});
+import BasicCard from "./BasicCard";
 
 export default function EventCard(props) {
-  props.style ? (styles.propStyle = props.style) : (styles.propStyle = {});
+  const [fireOnPress, setFireOnPress] = useState(false);
+
+  const onPress = () => {
+    !fireOnPress ? props.onPress() : setFireOnPress(true);
+  };
+
   return (
     <TouchableHighlight
       underlayColor={ProjectColors.selectColor}
-      onPress={props.onPress}
+      onPress={onPress}
     >
-      <View
-        style={[CommonStyles.card, CommonStyles.shadowBox, styles.propStyle]}
-      >
-        {props.children}
-      </View>
+      <BasicCard style={props.style}>{props.children}</BasicCard>
     </TouchableHighlight>
   );
 }
-
-EventCard.propTypes = {
+onPress = EventCard.propTypes = {
   onPress: PropTypes.func.isRequired
 };

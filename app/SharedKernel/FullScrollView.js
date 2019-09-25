@@ -10,10 +10,14 @@ const styles = StyleSheet.create({
 });
 
 export default function FullScrollView(props) {
+  const footer = props.disableFooter ? null : (
+    <Footer navigation={props.navigation} />
+  );
+
   return (
     <SafeAreaView style={CommonStyles.mainContainer}>
       <ScrollView style={styles.footerSpace}>{props.children}</ScrollView>
-      <Footer navigation={props.navigation} />
+      {footer}
     </SafeAreaView>
   );
 }

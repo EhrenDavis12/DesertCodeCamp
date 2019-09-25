@@ -13,17 +13,28 @@ import EventCard from "../SharedKernel/EventCard";
 import CommonStyles from "../SharedKernel/CommonStyles";
 import { CleanSessionData, GetTimeData } from "../SharedKernel/CleanFilterData";
 import FullScrollView from "../SharedKernel/FullScrollView";
-// import { testGetTimesByConferenceId } from "../API/api";
+import { withStore } from "../SharedKernel/HOC/Store";
+import { testGetTimesByConferenceId } from "../API/api";
 
 const _ = require("underscore");
 const fileName = `../DB_files/TimesData.json`;
 
-function Times({ navigation }) {
-  // const [sessions, setSessions] = useState([]);
-  let timeData = require(fileName);
-  timeData = _.sortBy(timeData, time => {
-    return time.StartTime;
-  });
+function Times({ navigation, store }) {
+  const [time, setTime] = useState(store.get("time"));
+  // let timeData = require(fileName);
+  sortTime = unSortedTime =>
+    _.sortBy(unSortedTime, time => {
+      return time.StartTime;
+    });
+
+  useEffect(() => {
+    if (!time)
+      testGetTimesByConferenceId().then(result => {
+        let sortedTime = sortTime(result);
+        store.set("time", sortedTime);
+        setTime(sortedTime);
+      });
+  }, []);
 
   handleSelectedTime = time => {
     navigation.navigate("sessionsTime", { time });
@@ -33,7 +44,7 @@ function Times({ navigation }) {
     <FullScrollView navigation={navigation}>
       <FlatList
         key="flatlist"
-        data={timeData}
+        data={time}
         style={CommonStyles.list}
         renderItem={({ item }) => (
           <EventCard onPress={() => handleSelectedTime(item)}>
@@ -46,4 +57,4 @@ function Times({ navigation }) {
   );
 }
 
-export default Times;
+export default withStore(Times);

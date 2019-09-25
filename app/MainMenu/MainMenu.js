@@ -5,6 +5,7 @@ import EventCard from "../SharedKernel/EventCard";
 import { getTimeFieldValues } from "uuid-js";
 import CommonStyles from "../SharedKernel/CommonStyles";
 import FullScrollView from "../SharedKernel/FullScrollView";
+// import GetUpFrontData from "../DB_files/GetUpFrontData";
 import { withStore } from "../SharedKernel/HOC/Store";
 
 const styles = StyleSheet.create({
@@ -48,7 +49,7 @@ function MainMenu({ navigation, store }) {
     menuItems.push({
       ID: 4,
       Name: "My Session",
-      onPress: () => navigation.navigate("mySessions", { user })
+      onPress: () => navigation.navigate("mySessionsTrack", { user })
     });
     menuItems.push({
       ID: 5,
@@ -61,6 +62,10 @@ function MainMenu({ navigation, store }) {
     Name: "About DCC",
     onPress: () => navigation.navigate("about")
   });
+
+  // useEffect(() => {
+  //   GetUpFrontData(store);
+  // }, []);
 
   return (
     <FullScrollView navigation={navigation}>

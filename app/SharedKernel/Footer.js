@@ -39,7 +39,7 @@ function Footer({ navigation, store }) {
   handleSelectedMySessions = () => {
     const user = store.get("user");
     user
-      ? navigation.navigate("mySessions", { user })
+      ? navigation.navigate("mySessionsTrack", { user })
       : navigation.navigate("loginForm");
   };
 

@@ -45,15 +45,14 @@ const styles = StyleSheet.create({
   }
 });
 
+// getEmail = () => AsyncStorage.getItem("DDC_Email").then(result);
+
 function LoginForm({ navigation, store }) {
   const [email, setEmail] = useState("");
 
   // useEffect(() => {
-  // AsyncStorage.getItem("user").then(result => {
-  //   if (result) setEmail(result.Email);
-  // });
-  AsyncStorage.getItem("DDC_Email").then(result => {
-    if (result) setEmail(result);
+  AsyncStorage.getItem("user").then(result => {
+    if (result) setEmail(result.Email);
   });
   // }, []);
 
@@ -69,7 +68,7 @@ function LoginForm({ navigation, store }) {
       if (result.length === 1) {
         AsyncStorage.setItem("DDC_Email", "j.guadagno@gmail.com");
         store.set("user", result[0]);
-        navigation.navigate("mySessions", { user: result[0] });
+        navigation.navigate("mySessionsTrack", { user: result[0] });
       } else {
         Alert.alert(`Please re-enter your email`);
       }
