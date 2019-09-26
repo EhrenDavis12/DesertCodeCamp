@@ -65,7 +65,6 @@ function LoadApplication({ navigation, store }) {
   loadAsyncData = (type, defaultValue) => {
     AsyncStorage.getItem(type).then(results => {
       results = results ? results : defaultValue;
-      debugger;
       store.set(type, results);
       updateCountLoad();
     });
