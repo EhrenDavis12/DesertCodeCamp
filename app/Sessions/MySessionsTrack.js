@@ -2,11 +2,8 @@ import React, { useState, useEffect } from "react";
 import { withStore } from "../SharedKernel/HOC/Store";
 
 import { testGetMyInterestedInSessionsByUserId } from "../API/api";
-import SessionsView from "./SessionsView";
-import { CleanSessionData } from "../SharedKernel/CleanFilterData";
+import FlatListView from "../SharedKernel/FlatListView";
 import { buildSessionList } from "./BuildSessionJsx";
-
-const _ = require("underscore");
 
 function Sessions({ navigation, store }) {
   handleSelectedSession = session => () => {
@@ -29,7 +26,9 @@ function Sessions({ navigation, store }) {
       });
   }, []);
 
-  return <SessionsView navigation={navigation} sessionJSX={mySessionsJSX} />;
+  return (
+    <FlatListView navigation={navigation} renderArrayJSX={mySessionsJSX} />
+  );
 }
 
 export default withStore(Sessions);

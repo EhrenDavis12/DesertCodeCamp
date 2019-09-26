@@ -5,7 +5,7 @@ import EventCard from "../SharedKernel/EventCard";
 import LoadingJsx from "../SharedKernel/LoadingJsx";
 
 export function buildSessionList(list, Type, handleOnPress) {
-  if (!list) return LoadingJsx("Sessions Are Loading...");
+  if (!list) return LoadingJsx("Sessions are Loading...");
   let lastName = "";
   return list.map(item => {
     let resultsJSX;
@@ -22,5 +22,20 @@ export function buildSessionList(list, Type, handleOnPress) {
       </View>
     );
     return { resultsJSX, itemKey: `Sessions_${item.SessionId}` };
+  });
+}
+
+export function buildBasicList(list, Type, handleOnPress) {
+  if (!list) return LoadingJsx(`${Type}s are Loading...`);
+  return list.map(item => {
+    let id = item[`${Type}Id`];
+    let resultsJSX = (
+      <View key={`${Type}_${id}`}>
+        <EventCard onPress={handleOnPress(item)}>
+          <Text style={CommonStyles.text}>{item.Name}</Text>
+        </EventCard>
+      </View>
+    );
+    return { resultsJSX, itemKey: `${Type}s_${id}` };
   });
 }

@@ -1,40 +1,39 @@
 import React, { useState, useEffect } from "react";
-import { Alert, FlatList, Text, View, StyleSheet } from "react-native";
-
-import EventCard from "../SharedKernel/EventCard";
-import CommonStyles from "../SharedKernel/CommonStyles";
-import FullScrollView from "../SharedKernel/FullScrollView";
 import { withStore } from "../SharedKernel/HOC/Store";
 
-const _ = require("underscore");
-
-sortTracks = unSortedTracks =>
-  _.sortBy(unSortedTracks, track => {
-    return track.Name;
-  });
+import LoadingJsx from "../SharedKernel/LoadingJsx";
+import FlatListView from "../SharedKernel/FlatListView";
+import { buildBasicList } from "../Sessions/BuildSessionJsx";
+import { sort } from "../SharedKernel/CleanFilterData";
 
 function Tracks({ navigation, store }) {
-  const [tracks, setTracks] = useState(sortTracks(store.get("tracks")));
+  // const tracksJSX = buildBasicList(
+  //   sortTracks(store.get(`tracks`)),
+  //   "Track",
+  //   handleSelected
+  // );
 
-  handleSelectedTrack = track => () => {
+  const [renderArrayJSX, setRenderArrayJSX] = useState(
+    LoadingJsx(`Tracks are loading...`)
+  );
+
+  setTracks = tracks => {
+    setRenderArrayJSX(
+      buildBasicList(sort(tracks, "Name"), "Track", handleSelected)
+    );
+  };
+
+  useEffect(() => {
+    setTracks(store.get(`tracks`));
+  }, []);
+
+  handleSelected = track => () => {
     navigation.navigate("sessionsTrack", { track });
   };
-  // event={() => Alert.alert(`Simple Button pressed: ${item.Name}`)}
 
+  // event={() => Alert.alert(`Simple Button pressed: ${item.Name}`)}
   return (
-    <FullScrollView navigation={navigation}>
-      <FlatList
-        key="flatlist"
-        data={tracks}
-        style={CommonStyles.list}
-        renderItem={({ item }) => (
-          <EventCard onPress={handleSelectedTrack(item)}>
-            <Text style={CommonStyles.text}>{item.Name}</Text>
-          </EventCard>
-        )}
-        keyExtractor={item => `task_${item.TrackId}`}
-      />
-    </FullScrollView>
+    <FlatListView navigation={navigation} renderArrayJSX={renderArrayJSX} />
   );
 }
 

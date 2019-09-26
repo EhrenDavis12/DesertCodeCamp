@@ -8,21 +8,22 @@ import {
   TouchableHighlight
 } from "react-native";
 
-import CommonStyles from "../SharedKernel/CommonStyles";
-import FullScrollView from "../SharedKernel/FullScrollView";
+import CommonStyles from "./CommonStyles";
+import FullScrollView from "./FullScrollView";
 
-function SessionsView(props) {
+function FlatListView(props) {
   return (
     <FullScrollView {...props}>
       <FlatList
         key="flatlist"
-        data={props.sessionJSX}
+        data={props.renderArrayJSX}
         style={CommonStyles.list}
         renderItem={({ item }) => <View>{item.resultsJSX}</View>}
         keyExtractor={item => `Render_${item.itemKey}`}
+        initialNumToRender={props.renderArrayJSX.length}
       />
     </FullScrollView>
   );
 }
 
-export default SessionsView;
+export default FlatListView;

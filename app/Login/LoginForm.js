@@ -48,12 +48,12 @@ const styles = StyleSheet.create({
 // getEmail = () => AsyncStorage.getItem("DDC_Email").then(result);
 
 function LoginForm({ navigation, store }) {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(store.get(`DDC_Email`));
 
   // useEffect(() => {
-  AsyncStorage.getItem("user").then(result => {
-    if (result) setEmail(result.Email);
-  });
+  // AsyncStorage.getItem("user").then(result => {
+  //   if (result) setEmail(result.Email);
+  // });
   // }, []);
 
   //"j.guadagno@gmail.com"

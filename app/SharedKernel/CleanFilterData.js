@@ -14,6 +14,12 @@ export function CleanSessionData(JsonData) {
   return sessionsData;
 }
 
+export function sort(unSorted, field) {
+  return _.sortBy(unSorted, item => {
+    return item[field];
+  });
+}
+
 export function GetSessionDataByTrack(trackId, JsonData) {
   let sessionsData = CleanSessionData(JsonData);
   sessionsData = _.filter(sessionsData, obj => {

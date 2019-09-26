@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { withStore } from "../SharedKernel/HOC/Store";
 
-import SessionsView from "./SessionsView";
+import FlatListView from "../SharedKernel/FlatListView";
 import { buildSessionList } from "./BuildSessionJsx";
 import { GetSessionDataByTrack } from "../SharedKernel/CleanFilterData";
 
@@ -29,7 +29,7 @@ function Sessions({ navigation, store }) {
     setSessions(store.get(`sessions`));
   }, []);
 
-  return <SessionsView navigation={navigation} sessionJSX={sessionsJSX} />;
+  return <FlatListView navigation={navigation} renderArrayJSX={sessionsJSX} />;
 }
 
 export default withStore(Sessions);
