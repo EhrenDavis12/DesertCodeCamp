@@ -6,8 +6,10 @@ import Tracks from "./app/Tracks/Tracks";
 import TestCss from "./app/TestCss/TestCss";
 import SessionsTrack from "./app/Sessions/SessionsTrack";
 import SessionsTime from "./app/Sessions/SessionsTime";
+import MySessionsTrack from "./app/Sessions/MySessionsTrack";
 import SessionDetails from "./app/SessionDetails/SessionDetails";
 import MainMenu from "./app/MainMenu/MainMenu";
+import LoadApplication from "./app/MainMenu/LoadApplication";
 import Times from "./app/Times/Times";
 import LoginForm from "./app/Login/LoginForm";
 import About from "./app/About/About";
@@ -20,6 +22,12 @@ const stackNavigator = StackNavigator({
   //     title: "TestCss"
   //   })
   // }
+  loadApplication: {
+    screen: LoadApplication,
+    navigationOptions: () => ({
+      title: "Main Menu"
+    })
+  },
   mainMenu: {
     screen: MainMenu,
     navigationOptions: () => ({
@@ -66,8 +74,8 @@ const stackNavigator = StackNavigator({
       title: "Login Form"
     })
   },
-  mySessions: {
-    screen: SessionsTrack,
+  mySessionsTrack: {
+    screen: MySessionsTrack, //SessionsTrack
     navigationOptions: value => {
       const user = value.navigation.getParam("user", "");
       name = user ? `${user.FirstName} ${user.LastName}` : "";

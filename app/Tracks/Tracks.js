@@ -1,49 +1,40 @@
 import React, { useState, useEffect } from "react";
-import { Alert, FlatList, Text, View, StyleSheet } from "react-native";
+import { withStore } from "../SharedKernel/HOC/Store";
 
-import { testGetTracksByConferenceId } from "../API/api";
-import EventCard from "../SharedKernel/EventCard";
-import { getTimeFieldValues } from "uuid-js";
-import CommonStyles from "../SharedKernel/CommonStyles";
-import FullScrollView from "../SharedKernel/FullScrollView";
+import LoadingJsx from "../SharedKernel/LoadingJsx";
+import FlatListView from "../SharedKernel/FlatListView";
+import { buildBasicList } from "../Sessions/BuildSessionJsx";
+import { sort } from "../SharedKernel/CleanFilterData";
 
-const _ = require("underscore");
-const fileName = `../DB_files/TracksDB.json`;
+function Tracks({ navigation, store }) {
+  // const tracksJSX = buildBasicList(
+  //   sortTracks(store.get(`tracks`)),
+  //   "Track",
+  //   handleSelected
+  // );
 
-function Tracks({ navigation }) {
-  // const [tracks, setTracks] = useState([]);
-  let tracks = require(fileName);
-  tracks = _.sortBy(tracks, track => {
-    return track.Name;
-  });
+  const [renderArrayJSX, setRenderArrayJSX] = useState(
+    LoadingJsx(`Tracks are loading...`)
+  );
 
-  // useEffect(() => {
-  //   setTracks(require(fileName));
-  //   // testGetTracksByConferenceId().then(result => {
-  //   //   setTracks(result);
-  //   // });
-  // }, []);
+  setTracks = tracks => {
+    setRenderArrayJSX(
+      buildBasicList(sort(tracks, "Name"), "Track", handleSelected)
+    );
+  };
 
-  handleSelectedTrack = track => {
+  useEffect(() => {
+    setTracks(store.get(`tracks`));
+  }, []);
+
+  handleSelected = track => () => {
     navigation.navigate("sessionsTrack", { track });
   };
-  // event={() => Alert.alert(`Simple Button pressed: ${item.Name}`)}
 
+  // event={() => Alert.alert(`Simple Button pressed: ${item.Name}`)}
   return (
-    <FullScrollView navigation={navigation}>
-      <FlatList
-        key="flatlist"
-        data={tracks}
-        style={CommonStyles.list}
-        renderItem={({ item }) => (
-          <EventCard onPress={() => handleSelectedTrack(item)}>
-            <Text style={CommonStyles.text}>{item.Name}</Text>
-          </EventCard>
-        )}
-        keyExtractor={item => `task_${item.TrackId}`}
-      />
-    </FullScrollView>
+    <FlatListView navigation={navigation} renderArrayJSX={renderArrayJSX} />
   );
 }
 
-export default Tracks;
+export default withStore(Tracks);

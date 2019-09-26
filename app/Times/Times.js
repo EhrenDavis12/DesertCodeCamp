@@ -1,49 +1,33 @@
 import React, { useState, useEffect } from "react";
-import {
-  Alert,
-  FlatList,
-  Text,
-  StyleSheet,
-  View,
-  TouchableHighlight
-} from "react-native";
-import PropTypes from "prop-types";
+import { withStore } from "../SharedKernel/HOC/Store";
 
-import EventCard from "../SharedKernel/EventCard";
-import CommonStyles from "../SharedKernel/CommonStyles";
-import { CleanSessionData, GetTimeData } from "../SharedKernel/CleanFilterData";
-import FullScrollView from "../SharedKernel/FullScrollView";
-// import { testGetTimesByConferenceId } from "../API/api";
+import LoadingJsx from "../SharedKernel/LoadingJsx";
+import FlatListView from "../SharedKernel/FlatListView";
+import { buildBasicList } from "../Sessions/BuildSessionJsx";
+import { sort } from "../SharedKernel/CleanFilterData";
 
-const _ = require("underscore");
-const fileName = `../DB_files/TimesData.json`;
+function Times({ navigation, store }) {
+  const [renderArrayJSX, setRenderArrayJSX] = useState(
+    LoadingJsx(`Time slots are loading...`)
+  );
 
-function Times({ navigation }) {
-  // const [sessions, setSessions] = useState([]);
-  let timeData = require(fileName);
-  timeData = _.sortBy(timeData, time => {
-    return time.StartTime;
-  });
+  setTimeSlots = times => {
+    setRenderArrayJSX(
+      buildBasicList(sort(times, "StartTime"), "Time", handleSelected)
+    );
+  };
 
-  handleSelectedTime = time => {
+  useEffect(() => {
+    setTimeSlots(store.get(`times`));
+  }, []);
+
+  handleSelected = time => () => {
     navigation.navigate("sessionsTime", { time });
   };
 
   return (
-    <FullScrollView navigation={navigation}>
-      <FlatList
-        key="flatlist"
-        data={timeData}
-        style={CommonStyles.list}
-        renderItem={({ item }) => (
-          <EventCard onPress={() => handleSelectedTime(item)}>
-            <Text style={CommonStyles.text}>{item.Name}</Text>
-          </EventCard>
-        )}
-        keyExtractor={item => `TimeID_${item.TimeId}`}
-      />
-    </FullScrollView>
+    <FlatListView navigation={navigation} renderArrayJSX={renderArrayJSX} />
   );
 }
 
-export default Times;
+export default withStore(Times);

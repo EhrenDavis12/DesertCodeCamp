@@ -1,7 +1,7 @@
 import React from "react";
 import { Text } from "react-native";
 
-import EventCard from "../SharedKernel/EventCard";
+import BasicCard from "../SharedKernel/BasicCard";
 import CommonStyles, { ProjectColors } from "../SharedKernel/CommonStyles";
 import OutSideCardHeader from "../SharedKernel/OutSideCardHeader";
 import FullScrollView from "../SharedKernel/FullScrollView";
@@ -19,27 +19,27 @@ function SessionDetails({ navigation }) {
   return (
     <FullScrollView navigation={navigation}>
       <OutSideCardHeader>Session:</OutSideCardHeader>
-      <EventCard onPress={() => {}}>
+      <BasicCard>
         <Text style={CommonStyles.text}>{Name}</Text>
-      </EventCard>
+      </BasicCard>
 
       <OutSideCardHeader>Details: </OutSideCardHeader>
-      <EventCard onPress={() => {}}>
+      <BasicCard>
         <Text style={CommonStyles.text}>{`Room: ${Room.Name}`}</Text>
         <Text style={CommonStyles.text}>{`Time: ${Time.Name}`}</Text>
-      </EventCard>
+      </BasicCard>
 
       <OutSideCardHeader>Summary: </OutSideCardHeader>
-      <EventCard onPress={() => {}}>
+      <BasicCard>
         <Text style={CommonStyles.text}>{Abstract}</Text>
-      </EventCard>
+      </BasicCard>
 
       <OutSideCardHeader>Presenter (tab to contact): </OutSideCardHeader>
-      <EventCard onPress={() => {}}>
+      <BasicCard>
         <Text
           style={CommonStyles.text}
         >{`${MainPresenter.FirstName} ${MainPresenter.LastName}`}</Text>
-      </EventCard>
+      </BasicCard>
     </FullScrollView>
   );
 }
