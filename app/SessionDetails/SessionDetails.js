@@ -6,13 +6,16 @@ import CommonStyles, { ProjectColors } from "../SharedKernel/CommonStyles";
 import OutSideCardHeader from "../SharedKernel/OutSideCardHeader";
 import FullScrollView from "../SharedKernel/FullScrollView";
 import HandleFavoriteBar from "./HandleFavoriteBar";
+import { CleanStringHTML } from "../SharedKernel/CleanFilterData";
 
 function SessionDetails({ navigation }) {
   const details = navigation.getParam("session", {});
 
   // get the session details,
   // including name, abstract, presenter(s), room and time.
-  const { Name, Abstract, MainPresenter, Room, Time, SessionId } = details;
+  let { Name, Abstract, MainPresenter, Room, Time, SessionId } = details;
+  Name = CleanStringHTML(Name);
+  Abstract = CleanStringHTML(Abstract);
 
   // return <Text style={CommonStyles.text}>{Name}</Text>;
   return (
