@@ -61,12 +61,12 @@ function Footer({ navigation, store }) {
         <Text style={styles.footerText}>My Sessions</Text>
       </TouchableHighlight>
 
-      <TouchableHighlight
+      {/* <TouchableHighlight
         style={[styles.bottomButtons, CommonStyles.shadowBox]}
         underlayColor={ProjectColors.selectColor}
       >
         <Text style={styles.footerText}>My Schedule</Text>
-      </TouchableHighlight>
+      </TouchableHighlight> */}
     </View>
   );
 }
