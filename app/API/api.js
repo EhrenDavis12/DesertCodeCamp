@@ -4,7 +4,7 @@ import Constants from "expo-constants";
 
 const api = `https://api.myconferenceevents.com`;
 const conferenceId = "14";
-const subdomain = "oct2018";
+const subdomain = "oct2019";
 const domain = "desertcodecamp.com";
 const login = "jguadagno";
 const masterConferenceId = "2";
@@ -14,7 +14,7 @@ export function loadData(url, data) {
   for (let attributeName in data) {
     url = `${url}${attributeName}=${data[attributeName]}&`;
   }
-  debugger;
+  // debugger;
   return fetch(url).then(response => {
     // debugger;
     return response.json();
@@ -46,8 +46,8 @@ export function testGetAmIInterestedInSessionByUserId(userId, sessionId) {
   return loadData(url, data).then(response => response);
 }
 
-export function updateSessionsCInterested(sessionId, userId, interested) {
-  let url = `${api}/MasterConference/GetMasterConferences`;
+export function updateSessionsInterested(sessionId, userId, interested) {
+  let url = `${api}/session/UpdateInterest`;
   let data = {
     sessionId: sessionId,
     userId: userId,

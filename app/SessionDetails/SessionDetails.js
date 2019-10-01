@@ -12,12 +12,12 @@ function SessionDetails({ navigation }) {
 
   // get the session details,
   // including name, abstract, presenter(s), room and time.
-  const { Name, Abstract, MainPresenter, Room, Time } = details;
+  const { Name, Abstract, MainPresenter, Room, Time, SessionId } = details;
 
   // return <Text style={CommonStyles.text}>{Name}</Text>;
   return (
     <FullScrollView navigation={navigation}>
-      <HandleFavoriteBar navigation={navigation} />
+      <HandleFavoriteBar navigation={navigation} sessionId={SessionId} />
 
       <OutSideCardHeader>Session:</OutSideCardHeader>
       <BasicCard>

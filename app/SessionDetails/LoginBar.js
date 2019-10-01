@@ -10,7 +10,9 @@ function LoginBar({ navigation }) {
 
   return (
     <EventCard onPress={handleSelected()}>
-      <Text style={CommonStyles.text}>Login to Favor this session!</Text>
+      <Text style={CommonStyles.text}>
+        Login to Favor this session! (click here)
+      </Text>
     </EventCard>
   );
 }

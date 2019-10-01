@@ -7,12 +7,12 @@ import LoginBar from "./LoginBar";
 
 // const _ = require("underscore");
 
-function HandleFavoriteBar({ navigation, store }) {
+function HandleFavoriteBar({ navigation, store, sessionId }) {
   const activeUser = store.get("user");
   if (!activeUser || !activeUser.UserId) {
     return <LoginBar navigation={navigation} />;
   } else {
-    return <FavoriteIcon activeUser={activeUser} />;
+    return <FavoriteIcon activeUser={activeUser} sessionId={sessionId} />;
   }
 
   // testGetMyInterestedInSessionsByUserId(activeUser.UserId).then(results => {

@@ -103,6 +103,3 @@ function LoginForm({ navigation, store }) {
 }
 
 export default withStore(LoginForm);
-
-// Interested
-// https://api.myconferenceevents.com/session/UpdateInterest?sessionId=1723&userId=28094&interested=false
