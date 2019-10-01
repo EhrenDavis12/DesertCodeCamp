@@ -1,12 +1,11 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, View, StyleSheet, Alert } from "react-native";
 
 import BasicCard from "../SharedKernel/BasicCard";
 import CommonStyles, { ProjectColors } from "../SharedKernel/CommonStyles";
 import OutSideCardHeader from "../SharedKernel/OutSideCardHeader";
 import FullScrollView from "../SharedKernel/FullScrollView";
-
-const _ = require("underscore");
+import HandleFavoriteBar from "./HandleFavoriteBar";
 
 function SessionDetails({ navigation }) {
   const details = navigation.getParam("session", {});
@@ -18,6 +17,8 @@ function SessionDetails({ navigation }) {
   // return <Text style={CommonStyles.text}>{Name}</Text>;
   return (
     <FullScrollView navigation={navigation}>
+      <HandleFavoriteBar navigation={navigation} />
+
       <OutSideCardHeader>Session:</OutSideCardHeader>
       <BasicCard>
         <Text style={CommonStyles.text}>{Name}</Text>
