@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { AsyncStorage } from "react-native";
+// import { AsyncStorage } from "react-native";
+// import SQLite from 'react-native-sqlite-2';
 import { withStore } from "../SharedKernel/HOC/Store";
 
 import LoadingJsx from "../SharedKernel/LoadingJsx";
@@ -13,7 +14,7 @@ import {
 
 function LoadApplication({ navigation, store }) {
   const [drawMenuAfterLoad, setDrawMenuAfterLoad] = useState(0);
-  const partsToLoad = 4;
+  const partsToLoad = 3;
   // let loadingJSX = () => LoadingJsx(`Loading Application...`);
   const loadingJSX = () =>
     LoadingJsx(
@@ -62,13 +63,15 @@ function LoadApplication({ navigation, store }) {
     }
   };
 
-  loadAsyncData = (type, defaultValue) => {
-    AsyncStorage.getItem(type).then(results => {
-      results = results ? results : defaultValue;
-      store.set(type, results);
-      updateCountLoad();
-    });
-  };
+  // loadAsyncData = (type, defaultValue) => {
+  //   debugger;
+  //   AsyncStorage.getItem(type).then(results => {
+  //     debugger;
+  //     results = results ? results : defaultValue;
+  //     store.set(type, results);
+  //     updateCountLoad();
+  //   });
+  // };
 
   // GetUpFrontDataWithClear = () => {
   //   AsyncStorage.removeItem(`DDC_API_tracks`).then(
@@ -83,7 +86,7 @@ function LoadApplication({ navigation, store }) {
   // };
 
   GetUpFrontData = () => {
-    loadAsyncData("DDC_Email", "");
+    // loadAsyncData("DDC_Email", "");
     loadApiData(`tracks`, testGetTracksByConferenceId, x => x);
     loadApiData(`times`, testGetTimesByConferenceId, x => x);
     loadApiData(`sessions`, testGetSessionsByConferenceId, CleanSessionData);

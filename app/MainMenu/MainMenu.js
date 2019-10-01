@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Alert, FlatList, Text, View, StyleSheet } from "react-native";
+import { withStore } from "../SharedKernel/HOC/Store";
 
 import EventCard from "../SharedKernel/EventCard";
 import { getTimeFieldValues } from "uuid-js";
 import CommonStyles from "../SharedKernel/CommonStyles";
 import FullScrollView from "../SharedKernel/FullScrollView";
 // import GetUpFrontData from "../DB_files/GetUpFrontData";
-import { withStore } from "../SharedKernel/HOC/Store";
 
 const styles = StyleSheet.create({
   card: {
@@ -43,7 +43,7 @@ function MainMenu({ navigation, store }) {
     menuItems.push({
       ID: 3,
       Name: "Login",
-      onPress: () => navigation.navigate("loginForm")
+      onPress: () => navigation.navigate("loginForm", { doNotGoBack: true })
     });
   } else {
     menuItems.push({
@@ -61,6 +61,11 @@ function MainMenu({ navigation, store }) {
     ID: 6,
     Name: "About DCC",
     onPress: () => navigation.navigate("about")
+  });
+  menuItems.push({
+    ID: 7,
+    Name: "Test CSS",
+    onPress: () => navigation.navigate("testCss")
   });
 
   // useEffect(() => {

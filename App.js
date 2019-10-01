@@ -16,16 +16,16 @@ import About from "./app/About/About";
 
 // export default StackNavigator({
 const stackNavigator = StackNavigator({
-  // testCss: {
-  //   screen: TestCss,
-  //   navigationOptions: () => ({
-  //     title: "TestCss"
-  //   })
-  // }
   loadApplication: {
     screen: LoadApplication,
     navigationOptions: () => ({
       title: "Main Menu"
+    })
+  },
+  testCss: {
+    screen: TestCss,
+    navigationOptions: () => ({
+      title: "Test Css"
     })
   },
   mainMenu: {

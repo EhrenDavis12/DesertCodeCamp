@@ -46,9 +46,12 @@ const styles = StyleSheet.create({
 });
 
 // getEmail = () => AsyncStorage.getItem("DDC_Email").then(result);
+const testEmail = "j.guadagno@gmail.com";
+const testEmail2 = "alleont@yahoo.com";
 
 function LoginForm({ navigation, store }) {
-  const [email, setEmail] = useState(store.get(`DDC_Email`));
+  const [email, setEmail] = useState("");
+  const doNotGoBack = navigation.getParam("doNotGoBack", "") ? true : false;
 
   // useEffect(() => {
   // AsyncStorage.getItem("user").then(result => {
@@ -64,11 +67,13 @@ function LoginForm({ navigation, store }) {
 
   handleGetUserSessions = () => {
     // if (validEmail(email))
-    testSearchForEmail("j.guadagno@gmail.com").then(result => {
+    testSearchForEmail(testEmail2).then(result => {
       if (result.length === 1) {
-        AsyncStorage.setItem("DDC_Email", "j.guadagno@gmail.com");
+        // AsyncStorage.setItem("DDC_Email", testEmail);
         store.set("user", result[0]);
-        navigation.navigate("mySessionsTrack", { user: result[0] });
+        doNotGoBack
+          ? navigation.navigate("mySessionsTrack", { user: result[0] })
+          : navigation.goBack(null);
       } else {
         Alert.alert(`Please re-enter your email`);
       }

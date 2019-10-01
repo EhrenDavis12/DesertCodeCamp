@@ -3,7 +3,11 @@ import moment from "moment";
 import Constants from "expo-constants";
 
 const api = `https://api.myconferenceevents.com`;
-const conferenceId = "13";
+const conferenceId = "14";
+const subdomain = "oct2019";
+const domain = "desertcodecamp.com";
+const login = "jguadagno";
+const masterConferenceId = "2";
 
 export function loadData(url, data) {
   url = `${url}?`;
@@ -22,6 +26,36 @@ export function testGetTracksByConferenceId() {
   let data = { conferenceId: conferenceId };
   return loadData(url, data).then(response => response);
 }
+
+export function testGetMyInterestedInSessionsByUserId(userId) {
+  let url = `${api}/Session/GetMyInterestedInSessionsByUserId`;
+  let data = {
+    userId: userId, // "22298",
+    subdomain: subdomain, //"apr2014",
+    domain: domain
+  };
+  return loadData(url, data).then(response => response);
+}
+
+export function testGetAmIInterestedInSessionByUserId(userId, sessionId) {
+  let url = `${api}/Session/AmIInterestedByUserId`;
+  let data = {
+    userId: userId, //"22298",
+    sessionId: sessionId //"1000"
+  };
+  return loadData(url, data).then(response => response);
+}
+
+export function updateSessionsInterested(sessionId, userId, interested) {
+  let url = `${api}/session/UpdateInterest`;
+  let data = {
+    sessionId: sessionId,
+    userId: userId,
+    interested: interested
+  };
+  return loadData(url, data).then(response => response);
+}
+// ${api}/session/UpdateInterest?sessionId=1723&userId=28094&interested=false
 
 // function loadData(url, dataObject) {
 //   // $('#divTable').hide();
@@ -78,13 +112,13 @@ export function testGetActiveMasterConferences() {
 
 export function testGetMasterConferenceByDomain() {
   let url = `${api}/MasterConference/GetMasterConferenceByDomain?domain=desertcodecamp.com`;
-  let data = { domain: "desertcodecamp.com" };
+  let data = { domain: domain };
   return loadData(url, data).then(response => response);
 }
 
 export function testGetMasterConferenceByMasterConferenceId() {
   let url = `${api}/MasterConference/GetMasterConferenceByMasterConferenceId`;
-  let data = { masterConferenceId: "2" };
+  let data = { masterConferenceId: masterConferenceId };
   return loadData(url, data).then(response => response);
 }
 
@@ -110,13 +144,13 @@ export function testGetConferenceByConferenceId() {
 
 export function testGetConferenceByConferenceDomain() {
   let url = `${api}/Conference/GetConferenceByConferenceDomain`;
-  let data = { subdomain: "apr2014", domain: "desertcodecamp.com" };
+  let data = { subdomain: subdomain, domain: domain };
   return loadData(url, data).then(response => response);
 }
 
 export function testGetConferenceForMasterConferenceByDomain() {
   let url = `${api}/Conference/GetConferenceForMasterConferenceByDomain`;
-  let data = { domain: "desertcodecamp.com" };
+  let data = { domain: domain };
   return loadData(url, data).then(response => response);
 }
 
@@ -143,7 +177,7 @@ export function testGetRoomsByConferenceId() {
 
 export function testGetRoomsByConferenceDomain() {
   let url = `${api}/Room/GetRoomsByConferenceDomain`;
-  let data = { subdomain: "apr2014", domain: "desertcodecamp.com" };
+  let data = { subdomain: subdomain, domain: domain };
   return loadData(url, data).then(response => response);
 }
 
@@ -161,7 +195,7 @@ export function testGetRoomsWithSessionByConferenceId() {
 
 export function testGetRoomsWithSessionByConferenceDomain() {
   let url = `${api}/Room/GetRoomsWithSessionByConferenceDomain`;
-  let data = { subdomain: "apr2014", domain: "desertcodecamp.com" };
+  let data = { subdomain: subdomain, domain: domain };
   return loadData(url, data).then(response => response);
 }
 
@@ -182,13 +216,13 @@ export function testGetSessionsByConferenceId() {
 
 export function testGetSessionsByConferenceDomain() {
   let url = `${api}/Session/GetSessionsByConferenceDomain`;
-  let data = { subdomain: "apr2014", domain: "desertcodecamp.com" };
+  let data = { subdomain: subdomain, domain: domain };
   return loadData(url, data).then(response => response);
 }
 
 export function testGetRecentlyApprovedSessionsByConferenceDomain() {
   let url = `${api}/Session/GetRecentlyApprovedSessionsByConferenceDomain`;
-  let data = { subdomain: "apr2014", domain: "desertcodecamp.com" };
+  let data = { subdomain: subdomain, domain: domain };
   return loadData(url, data).then(response => response);
 }
 
@@ -200,54 +234,54 @@ export function testGetScheduledSessionsByConferenceId() {
 
 export function testGetScheduledSessionsByConferenceDomain() {
   let url = `${api}/Session/GetScheduledSessionsByConferenceDomain`;
-  let data = { subdomain: "apr2014", domain: "desertcodecamp.com" };
+  let data = { subdomain: subdomain, domain: domain };
   return loadData(url, data).then(response => response);
 }
 
 export function testGetScheduledSessionsForLoginByConferenceId() {
   let url = `${api}/Session/GetScheduledSessionsForLoginByConferenceId`;
-  let data = { login: "jguadagno", conferenceId: "1" };
+  let data = { login: login, conferenceId: conferenceId };
   return loadData(url, data).then(response => response);
 }
 
 export function testGetScheduledSessionsForLoginByConferenceDomain() {
   let url = `${api}/Session/GetScheduledSessionsForLoginByConferenceDomain`;
   let data = {
-    login: "jguadagno",
-    subdomain: "apr2014",
-    domain: "desertcodecamp.com"
+    login: login,
+    subdomain: subdomain,
+    domain: domain
   };
-  return loadData(url).then(response => response);
-}
-
-export function testGetAmIInterestedInSessionByUserId() {
-  let url = `${api}/Session/AmIInterestedByUserId`;
-  let data = { userId: "22298", sessionId: "1000" };
   return loadData(url, data).then(response => response);
 }
+
+// export function testGetAmIInterestedInSessionByUserId() {
+//   let url = `${api}/Session/AmIInterestedByUserId`;
+//   let data = { userId: "22298", sessionId: "1000" };
+//   return loadData(url, data).then(response => response);
+// }
 
 export function testGetAmIInterestedInSessionByLogin() {
   let url = `${api}/Session/AmIInterestedByLogin`;
-  let data = { login: "jguadagno", sessionId: "1000" };
+  let data = { login: login, sessionId: "1000" };
   return loadData(url, data).then(response => response);
 }
 
-export function testGetMyInterestedInSessionsByUserId(userId) {
-  let url = `${api}/Session/GetMyInterestedInSessionsByUserId`;
-  let data = {
-    userId: "22298",
-    subdomain: "apr2014",
-    domain: "desertcodecamp.com"
-  };
-  return loadData(url, data).then(response => response);
-}
+// export function testGetMyInterestedInSessionsByUserId(userId) {
+//   let url = `${api}/Session/GetMyInterestedInSessionsByUserId`;
+//   let data = {
+//     userId: "22298",
+//     subdomain: subdomain,
+//     domain: domain
+//   };
+//   return loadData(url, data).then(response => response);
+// }
 
 export function testGetMyInterestedInSessionsByLogin() {
   let url = `${api}/Session/GetMyInterestedInSessionsByLogin`;
   let data = {
-    login: "jguadagno",
-    subdomain: "apr2014",
-    domain: "desertcodecamp.com"
+    login: login,
+    subdomain: subdomain,
+    domain: domain
   };
   return loadData(url, data).then(response => response);
 }
@@ -256,8 +290,8 @@ export function testGetMyPresentationsByUserId() {
   let url = `${api}/Session/GetMyPresentationsByUserId`;
   let data = {
     userId: "22298",
-    subdomain: "apr2014",
-    domain: "desertcodecamp.com"
+    subdomain: subdomain,
+    domain: domain
   };
   return loadData(url, data).then(response => response);
 }
@@ -265,9 +299,9 @@ export function testGetMyPresentationsByUserId() {
 export function testGetMyPresentationsSessionByLogin() {
   let url = `${api}/Session/GetMyPresentationsByLogin`;
   let data = {
-    login: "jguadagno",
-    subdomain: "apr2014",
-    domain: "desertcodecamp.com"
+    login: login,
+    subdomain: subdomain,
+    domain: domain
   };
   return loadData(url, data).then(response => response);
 }
@@ -280,7 +314,7 @@ export function testGetAmIPresentingSessionByUserId() {
 
 export function testGetAmIPresentingSessionByLogin() {
   let url = `${api}/Session/AmIPresentingByLogin`;
-  let data = { login: "jguadagno", sessionId: "1000" };
+  let data = { login: login, sessionId: "1000" };
   return loadData(url, data).then(response => response);
 }
 
@@ -301,7 +335,7 @@ export function testGetTimesByConferenceId() {
 
 export function testGetTimesByConferenceDomain() {
   let url = `${api}/Time/GetTimesByConferenceDomain`;
-  let data = { subdomain: "apr2014", domain: "desertcodecamp.com" };
+  let data = { subdomain: subdomain, domain: domain };
   return loadData(url, data).then(response => response);
 }
 
@@ -313,7 +347,7 @@ export function testGetTimesWithSessionByConferenceId() {
 
 export function testGetTimesWithSessionByConferenceDomain() {
   let url = `${api}/Time/GetTimesWithSessionByConferenceDomain`;
-  let data = { subdomain: "apr2014", domain: "desertcodecamp.com" };
+  let data = { subdomain: subdomain, domain: domain };
   return loadData(url, data).then(response => response);
 }
 
@@ -334,12 +368,12 @@ export function testGetTracks() {
 // export async function testGetTracksByConferenceId() {
 //   let url = `${api}/Track/GetTracksByConferenceId`;
 //   let data = { conferenceId: conferenceId };
-//   return await    return loadData(url).then(response => response);
+//   return await    return loadData(url, data).then(response => response);
 // }
 
 export function testGetTracksByConferenceDomain() {
   let url = `${api}/Track/GetTracksByConferenceDomain`;
-  let data = { subdomain: "apr2014", domain: "desertcodecamp.com" };
+  let data = { subdomain: subdomain, domain: domain };
   return loadData(url, data).then(response => response);
 }
 
