@@ -13,7 +13,8 @@ import {
 import { withStore } from "../SharedKernel/HOC/Store";
 
 import { testSearchForEmail } from "../API/api";
-import EventCard from "../SharedKernel/EventCard";
+import BasicCard from "../SharedKernel/BasicCard";
+import OutSideCardHeader from "../SharedKernel/OutSideCardHeader";
 import CommonStyles, { ProjectColors } from "../SharedKernel/CommonStyles";
 import FullScrollView from "../SharedKernel/FullScrollView";
 
@@ -98,6 +99,14 @@ function LoginForm({ navigation, store }) {
       >
         <Text style={styles.buttonText}>LogIn</Text>
       </TouchableHighlight>
+      <OutSideCardHeader>
+        <Text style={CommonStyles.text}>No Account?</Text>
+      </OutSideCardHeader>
+      <OutSideCardHeader>
+        <Text style={CommonStyles.text}>
+          Log into DesertCodeCamp.com to create an account.
+        </Text>
+      </OutSideCardHeader>
     </FullScrollView>
   );
 }

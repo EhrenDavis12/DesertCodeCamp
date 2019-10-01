@@ -41,3 +41,19 @@ export function GetSessionDataByTime(timeId, JsonData) {
   });
   return sessionsData;
 }
+
+export function CleanStringHTML(word) {
+  let returnWord = word.toString();
+  returnWord = returnWord.replace(/&#039;/g, "'");
+  returnWord = returnWord.replace(/&#39;/g, "'");
+  returnWord = returnWord.replace(/&quot;/g, '"');
+  returnWord = returnWord.replace(/&apos;/g, "'");
+  returnWord = returnWord.replace(/&amp;/g, "&");
+  returnWord = returnWord.replace(/&lt;/g, "<");
+  returnWord = returnWord.replace(/&gt;/g, ">");
+  returnWord = returnWord.replace(/&nbsp;/g, " ");
+  returnWord = returnWord.replace(/<p>/g, "\t");
+  returnWord = returnWord.replace(/<\/p>/g, "");
+  returnWord = returnWord.replace(/<br>/g, "\n");
+  return returnWord;
+}
