@@ -13,7 +13,6 @@ import {
 import { withStore } from "../SharedKernel/HOC/Store";
 
 import { testSearchForEmail } from "../API/api";
-import BasicCard from "../SharedKernel/BasicCard";
 import OutSideCardHeader from "../SharedKernel/OutSideCardHeader";
 import CommonStyles, { ProjectColors } from "../SharedKernel/CommonStyles";
 import FullScrollView from "../SharedKernel/FullScrollView";
