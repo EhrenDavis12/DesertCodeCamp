@@ -40,7 +40,7 @@ function Footer({ navigation, store }) {
     const user = store.get("user");
     user
       ? navigation.navigate("mySessionsTrack", { user })
-      : navigation.navigate("loginForm");
+      : navigation.navigate("loginForm", { doNotGoBack: true });
   };
 
   return (

@@ -50,7 +50,7 @@ const testEmail = "j.guadagno@gmail.com";
 const testEmail2 = "alleont@yahoo.com";
 
 function LoginForm({ navigation, store }) {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(store.get(`DDC_Email`));
   const doNotGoBack = navigation.getParam("doNotGoBack", "") ? true : false;
 
   // useEffect(() => {
@@ -66,18 +66,18 @@ function LoginForm({ navigation, store }) {
   };
 
   handleGetUserSessions = () => {
-    // if (validEmail(email))
-    testSearchForEmail(testEmail2).then(result => {
-      if (result.length === 1) {
-        // AsyncStorage.setItem("DDC_Email", testEmail);
-        store.set("user", result[0]);
-        doNotGoBack
-          ? navigation.navigate("mySessionsTrack", { user: result[0] })
-          : navigation.goBack(null);
-      } else {
-        Alert.alert(`Please re-enter your email`);
-      }
-    });
+    if (validEmail(email))
+      testSearchForEmail(email).then(result => {
+        if (result.length === 1) {
+          AsyncStorage.setItem("DDC_Email", email);
+          store.set("user", result[0]);
+          doNotGoBack
+            ? navigation.navigate("mySessionsTrack", { user: result[0] })
+            : navigation.goBack(null);
+        } else {
+          Alert.alert(`Please re-enter your email`);
+        }
+      });
   };
 
   return (
