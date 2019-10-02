@@ -20,7 +20,6 @@ function Sessions({ navigation, store }) {
     const userId = user ? user.UserId : null;
     if (userId)
       testGetMyInterestedInSessionsByUserId(userId).then(results => {
-        debugger;
         if (results.length > 0) {
           setMySessionsJSX(
             buildSessionList(results, "Time", handleSelectedSession)

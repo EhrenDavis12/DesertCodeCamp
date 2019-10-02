@@ -20,7 +20,7 @@ function FavoriteBar({ activeUser, sessionId }) {
     );
   }, []);
 
-  handleFavoriteSession = () => {
+  handleFavoriteSession = () => () => {
     const interested = iconName === "favoriteBorder";
     updateSessionsInterested(sessionId, activeUser.UserId, interested).then(
       result => {
@@ -33,7 +33,7 @@ function FavoriteBar({ activeUser, sessionId }) {
   };
 
   return (
-    <EventCard onPress={() => handleFavoriteSession()}>
+    <EventCard onPress={handleFavoriteSession()}>
       <View style={{ flexDirection: "row" }}>
         <Text style={CommonStyles.text}>Favor this session!</Text>
         <Icon style={{ marginLeft: "auto" }} name={iconName} />
