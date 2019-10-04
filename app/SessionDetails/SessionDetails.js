@@ -38,7 +38,7 @@ function SessionDetails({ navigation }) {
         <Text style={CommonStyles.text}>{Abstract}</Text>
       </BasicCard>
 
-      <OutSideCardHeader>Presenter (tab to contact): </OutSideCardHeader>
+      <OutSideCardHeader>Presenter: </OutSideCardHeader>
       <BasicCard>
         <Text
           style={CommonStyles.text}

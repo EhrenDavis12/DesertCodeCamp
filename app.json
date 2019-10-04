@@ -16,9 +16,14 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": ["app/*"],
     "ios": {
       "supportsTablet": false
+    },
+    "android": {
+      "versionCode": 1,
+      "permissions": [],
+      "package": "com.ehrendavis.desertcodecampscheduler"
     }
   }
 }
