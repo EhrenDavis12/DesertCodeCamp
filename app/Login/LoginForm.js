@@ -70,6 +70,7 @@ function LoginForm({ navigation, store }) {
       testSearchForEmail(email).then(result => {
         if (result.length === 1) {
           AsyncStorage.setItem("DDC_Email", email);
+          store.set("DDC_Email", email);
           store.set("user", result[0]);
           doNotGoBack
             ? navigation.navigate("mySessionsTrack", { user: result[0] })
