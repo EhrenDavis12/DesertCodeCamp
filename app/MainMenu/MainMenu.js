@@ -62,11 +62,16 @@ function MainMenu({ navigation, store }) {
     Name: "About DCC",
     onPress: () => navigation.navigate("about")
   });
-  menuItems.push({
-    ID: 7,
-    Name: "Test CSS",
-    onPress: () => navigation.navigate("testCss")
-  });
+  // menuItems.push({
+  //   ID: 7,
+  //   Name: "test reload",
+  //   onPress: () => navigation.navigate("reloadYourApp")
+  // });
+  // menuItems.push({
+  //   ID: 7,
+  //   Name: "Test CSS",
+  //   onPress: () => navigation.navigate("testCss")
+  // });
 
   // useEffect(() => {
   //   GetUpFrontData(store);

@@ -29,7 +29,7 @@ function LoadApplication({ navigation, store }) {
   };
 
   updateCountLoad = () => {
-    setDrawMenuAfterLoad(drawMenuAfterLoad + 1);
+    setDrawMenuAfterLoad(drawMenuAfterLoad => drawMenuAfterLoad + 1);
   };
 
   // loadDataWithAsyncStorage = (type, apiCall, cleanData) => {
@@ -53,11 +53,14 @@ function LoadApplication({ navigation, store }) {
   loadApiData = (type, apiCall, cleanData) => {
     const data = store.get(type);
     if (!data) {
-      apiCall().then(results => {
-        results = cleanData(results);
-        store.set(type, results);
-        updateCountLoad();
-      });
+      apiCall()
+        .then(results => {
+          results = cleanData(results);
+          store.set(type, results);
+          debugger;
+          updateCountLoad();
+        })
+        .catch(() => navigation.navigate("reloadYourApp"));
     } else {
       updateCountLoad();
     }

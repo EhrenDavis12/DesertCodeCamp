@@ -1,14 +1,10 @@
 {
   "expo": {
-    "name": "DesertCodeCamp",
-    "slug": "DesertCodeCamp",
+    "name": "Desert Code Camp Scheduler",
+    "slug": "Desert-Code-Camp-Scheduler",
     "privacy": "public",
     "sdkVersion": "34.0.0",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,11 +16,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     }
   }
 }

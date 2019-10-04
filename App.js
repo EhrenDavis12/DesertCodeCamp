@@ -9,6 +9,7 @@ import SessionsTime from "./app/Sessions/SessionsTime";
 import MySessionsTrack from "./app/Sessions/MySessionsTrack";
 import SessionDetails from "./app/SessionDetails/SessionDetails";
 import MainMenu from "./app/MainMenu/MainMenu";
+import ReloadYourApp from "./app/MainMenu/ReloadYourApp";
 import LoadApplication from "./app/MainMenu/LoadApplication";
 import Times from "./app/Times/Times";
 import LoginForm from "./app/Login/LoginForm";
@@ -20,6 +21,12 @@ const stackNavigator = StackNavigator({
     screen: LoadApplication,
     navigationOptions: () => ({
       title: "Main Menu"
+    })
+  },
+  reloadYourApp: {
+    screen: ReloadYourApp,
+    navigationOptions: () => ({
+      title: "Connection Failed"
     })
   },
   testCss: {
