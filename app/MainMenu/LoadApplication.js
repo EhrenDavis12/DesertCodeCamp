@@ -16,6 +16,7 @@ function LoadApplication({ navigation, store }) {
   const [drawMenuAfterLoad, setDrawMenuAfterLoad] = useState(0);
   const partsToLoad = 4;
   // let loadingJSX = () => LoadingJsx(`Loading Application...`);
+
   const loadingJSX = () =>
     LoadingJsx(
       `Loading Application... ${(
@@ -57,7 +58,6 @@ function LoadApplication({ navigation, store }) {
         .then(results => {
           results = cleanData(results);
           store.set(type, results);
-          debugger;
           updateCountLoad();
         })
         .catch(() => navigation.navigate("reloadYourApp"));
@@ -111,7 +111,7 @@ function LoadApplication({ navigation, store }) {
     <FlatListView
       navigation={navigation}
       renderArrayJSX={loadingJSX()}
-      disableFooter={true}
+      // disableFooter={true}
     />
   );
 }

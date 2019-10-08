@@ -20,7 +20,7 @@ const stackNavigator = StackNavigator({
   loadApplication: {
     screen: LoadApplication,
     navigationOptions: () => ({
-      title: "Main Menu"
+      title: "Loading Application"
     })
   },
   reloadYourApp: {
