@@ -64,18 +64,9 @@ function MainMenu({ navigation, store }) {
   });
   // menuItems.push({
   //   ID: 7,
-  //   Name: "test reload",
-  //   onPress: () => navigation.navigate("reloadYourApp")
-  // });
-  // menuItems.push({
-  //   ID: 7,
   //   Name: "Test CSS",
   //   onPress: () => navigation.navigate("testCss")
   // });
-
-  // useEffect(() => {
-  //   GetUpFrontData(store);
-  // }, []);
 
   return (
     <FullScrollView navigation={navigation}>
