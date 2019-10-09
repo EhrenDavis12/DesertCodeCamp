@@ -1,5 +1,7 @@
 import React from "react";
-import { StackNavigator } from "react-navigation";
+// import { StackNavigator } from "react-navigation";
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
 import { createStore } from "./app/SharedKernel/HOC/Store";
 
 import Tracks from "./app/Tracks/Tracks";
@@ -15,8 +17,7 @@ import Times from "./app/Times/Times";
 import LoginForm from "./app/Login/LoginForm";
 import About from "./app/About/About";
 
-// export default StackNavigator({
-const stackNavigator = StackNavigator({
+const stackNavigator = createStackNavigator({
   loadApplication: {
     screen: LoadApplication,
     navigationOptions: () => ({
@@ -99,4 +100,6 @@ const stackNavigator = StackNavigator({
   }
 });
 
-export default createStore(stackNavigator);
+const AppContainer = createAppContainer(stackNavigator);
+export default createStore(AppContainer);
+// export default createAppContainer(createStore(stackNavigator));
