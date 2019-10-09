@@ -14,9 +14,9 @@ export function CleanSessionData(JsonData) {
   return sessionsData;
 }
 
-export function sort(unSorted, field) {
+export function sort(unSorted, Type, field) {
   return _.sortBy(unSorted, item => {
-    return item[field];
+    return field ? item[Type][field] : item[Type];
   });
 }
 
