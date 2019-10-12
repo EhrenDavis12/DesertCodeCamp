@@ -4,7 +4,7 @@ import { withStore } from "../SharedKernel/HOC/Store";
 import { testGetMyInterestedInSessionsByUserId } from "../API/api";
 import FlatListView from "../SharedKernel/FlatListView";
 import { buildSessionList } from "./BuildSessionJsx";
-import { sort } from "../SharedKernel/CleanFilterData";
+import { CleanSessionData } from "../SharedKernel/CleanFilterData";
 import LoadingJsx from "../SharedKernel/LoadingJsx";
 
 function Sessions({ navigation, store }) {
@@ -22,13 +22,11 @@ function Sessions({ navigation, store }) {
     if (userId)
       testGetMyInterestedInSessionsByUserId(userId).then(results => {
         if (results.length > 0) {
-          debugger;
-          let results1 = sort(results, "Time", "StartDate");
-          debugger;
+          let mySessions = CleanSessionData(results, "Time", "StartDate");
           setMySessionsJSX(
-            buildSessionList(results1, "Time", handleSelectedSession)
+            buildSessionList(mySessions, "Time", handleSelectedSession)
           );
-          store.set("mySessions", results1);
+          store.set("mySessions", mySessions);
         } else {
           setMySessionsJSX(
             LoadingJsx(
