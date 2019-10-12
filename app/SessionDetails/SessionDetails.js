@@ -13,7 +13,7 @@ function SessionDetails({ navigation }) {
 
   // get the session details,
   // including name, abstract, presenter(s), room and time.
-  let { Name, Abstract, MainPresenter, Room, Time, SessionId } = details;
+  let { Name, Abstract, MainPresenter, Room, Time, SessionId, Track } = details;
   Name = CleanStringHTML(Name);
   Abstract = CleanStringHTML(Abstract);
 
@@ -31,6 +31,7 @@ function SessionDetails({ navigation }) {
       <BasicCard>
         <Text style={CommonStyles.text}>{`Room: ${Room.Name}`}</Text>
         <Text style={CommonStyles.text}>{`Time: ${Time.Name}`}</Text>
+        <Text style={CommonStyles.text}>{`Track: ${Track.Name}`}</Text>
       </BasicCard>
 
       <OutSideCardHeader>Summary: </OutSideCardHeader>
