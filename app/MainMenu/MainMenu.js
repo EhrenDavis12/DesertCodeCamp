@@ -62,6 +62,11 @@ function MainMenu({ navigation, store }) {
     Name: "About DCC",
     onPress: () => navigation.navigate("about")
   });
+  menuItems.push({
+    ID: 7,
+    Name: "A Sweet Local Deal",
+    onPress: () => navigation.navigate("localDeals")
+  });
   // menuItems.push({
   //   ID: 7,
   //   Name: "Test CSS",

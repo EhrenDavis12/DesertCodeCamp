@@ -16,6 +16,7 @@ import LoadApplication from "./app/MainMenu/LoadApplication";
 import Times from "./app/Times/Times";
 import LoginForm from "./app/Login/LoginForm";
 import About from "./app/About/About";
+import LocalDeals from "./app/LocalDeals/LocalDeals";
 
 const stackNavigator = createStackNavigator({
   loadApplication: {
@@ -96,6 +97,12 @@ const stackNavigator = createStackNavigator({
     screen: About,
     navigationOptions: () => ({
       title: "About"
+    })
+  },
+  localDeals: {
+    screen: LocalDeals,
+    navigationOptions: () => ({
+      title: "A Sweet Local Deal"
     })
   }
 });
